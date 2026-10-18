@@ -50,3 +50,12 @@ TagManager:
   - name: char
     uniqueID: 3774423871
     locked: 0
+  - name: tree
+    uniqueID: 321255705
+    locked: 0
+  - name: Lake
+    uniqueID: 1249170925
+    locked: 0
+  - name: Mushroom
+    uniqueID: 369400369
+    locked: 0

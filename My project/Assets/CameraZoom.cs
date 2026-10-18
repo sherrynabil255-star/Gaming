@@ -1,30 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
+using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
+    private Camera Cam;
 
-private Camera Cam;
-public float targetzoom = 3;
-private float scrolldata;
-public float zoomspeed = 3;
-    // Start is called before the first frame update
+    public float TargetZoom = 3f;
+    public float ZoomSpeed = 3f;
+
+    public float minZoom = 3f;
+    public float maxZoom = 6f;
+
     void Start()
     {
-       Cam=GetComponent<Camera>();
-       targetzoom= Cam.orthographicSize; 
+        Cam = GetComponent<Camera>();
+
+        if (Cam != null)
+        {
+            TargetZoom = Cam.orthographicSize;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        scrolldata=Input.GetAxis("Mouse ScrollWheel");
-        targetzoom = targetzoom - scrolldata;
-    } 
+        if (Cam == null)
+        {
+            return;
+        }
 
-targetzoom=Mathf.Clamp(targetzoom,3,6);
+        float ScrollData = Input.GetAxis("Mouse ScrollWheel");
 
-Cam.orthographicSize=Mathf.Lerp(Cam.orthographicSize,targetzoom,Time.deltaTime*zoomspeed);
+        TargetZoom -= ScrollData;
+        TargetZoom = Mathf.Clamp(TargetZoom, minZoom, maxZoom);
+
+        Cam.orthographicSize = Mathf.Lerp(
+            Cam.orthographicSize,
+            TargetZoom,
+            Time.deltaTime * ZoomSpeed
+        );
+    }
 }
