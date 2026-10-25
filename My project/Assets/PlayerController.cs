@@ -29,10 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        rb.velocity = new Vector2(
-            rb.velocity.x,
-            jumpHeight
-        );
+        rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
     }
 
     void Update()
@@ -68,8 +65,8 @@ public class PlayerController : MonoBehaviour
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
-            anim.SetFloat("Height", rb.velocity.y);
-            anim.SetBool("Grounded", grounded);
+            anim.SetFloat("height", rb.velocity.y);
+            anim.SetBool("grounded", grounded);
         }
     }
 
